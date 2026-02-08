@@ -14,6 +14,7 @@ export function ArchiveContent() {
         role="2021 — 2025"
         roleLabel="Archive"
         aboutLabel="Index"
+        compact
       />
       <ProjectGrid />
       <Footer />

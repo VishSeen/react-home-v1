@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { PORTFOLIO_DATA } from '@/lib/constants';
 
 interface ProjectCardProps {
@@ -6,7 +7,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <div className="w-[85vw] md:w-[45vw] lg:w-[35vw] shrink-0 group cursor-pointer">
+    <Link href={`/projects/${project.slug}`} className="w-[85vw] md:w-[45vw] lg:w-[35vw] shrink-0 group cursor-pointer block">
       <div className="relative aspect-[4/3] md:aspect-[16/10] overflow-hidden bg-gray-200 mb-6 group-hover:shadow-2xl transition-all duration-500">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -41,6 +42,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </span>
         ))}
       </div>
-    </div>
+    </Link>
   );
 }

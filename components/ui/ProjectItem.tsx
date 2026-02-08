@@ -1,4 +1,5 @@
 import { ArrowUpRight } from 'lucide-react';
+import Link from 'next/link';
 import { Reveal } from '@/components/ui/Reveal';
 import { PORTFOLIO_DATA } from '@/lib/constants';
 
@@ -11,7 +12,7 @@ export function ProjectItem({ project, index }: ProjectItemProps) {
   const isEven = index % 2 === 0;
 
   return (
-    <div className={`group ${!isEven ? 'md:mt-32' : ''}`}>
+    <Link href={`/projects/${project.slug}`} className={`group block ${!isEven ? 'md:mt-32' : ''}`}>
       <Reveal delay={(index % 2) * 200}>
         <div className="relative overflow-hidden aspect-[4/3] mb-8 cursor-pointer">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -59,6 +60,6 @@ export function ProjectItem({ project, index }: ProjectItemProps) {
           </div>
         </div>
       </Reveal>
-    </div>
+    </Link>
   );
 }
