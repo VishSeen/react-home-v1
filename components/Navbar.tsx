@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { PORTFOLIO_DATA } from '../constants';
 import { Menu, X } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,9 +33,9 @@ export const Navbar: React.FC = () => {
   }, [isOpen]);
 
   const navLinks = [
-    { name: 'Projects', to: '#work', id: '01' },
-    { name: 'Profile', to: '#about', id: '02' },
-    { name: 'Contact', to: '#contact', id: '03' }
+    { name: 'Projects', to: '/archive', id: '01' },
+    { name: 'Profile', to: '/#about', id: '02' },
+    { name: 'Contact', to: '/#contact', id: '03' }
   ];
 
   const handleLinkClick = () => {
@@ -48,9 +50,9 @@ export const Navbar: React.FC = () => {
       >
         <div className="flex justify-between items-center relative">
           {/* Logo */}
-          <a href="#" className={`font-serif text-2xl tracking-tight relative z-[70] transition-colors duration-500 ${isOpen ? 'text-[#F5F5F0]' : 'text-primary'}`}>
+          <Link to="/" className={`font-serif text-2xl tracking-tight relative z-[70] transition-colors duration-500 ${isOpen ? 'text-[#F5F5F0]' : 'text-primary'}`}>
             {PORTFOLIO_DATA.logoName}.
-          </a>
+          </Link>
 
           {/* Menu Toggle */}
           <button
@@ -77,9 +79,9 @@ export const Navbar: React.FC = () => {
           {/* Navigation Links */}
           <div className="lg:col-span-8 flex flex-col space-y-2">
             {navLinks.map((link, idx) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.to}
+                to={link.to}
                 onClick={handleLinkClick}
                 className={`group relative flex items-baseline gap-4 text-5xl md:text-7xl lg:text-8xl font-serif text-[#F5F5F0] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
                 style={{ transitionDelay: `${200 + (idx * 100)}ms` }}
@@ -90,7 +92,7 @@ export const Navbar: React.FC = () => {
                 <span className="italic opacity-50 group-hover:opacity-100 transition-all duration-500 group-hover:translate-x-4">
                   {link.name}
                 </span>
-              </a>
+              </Link>
             ))}
           </div>
 

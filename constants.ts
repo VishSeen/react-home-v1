@@ -1,7 +1,7 @@
 export const PORTFOLIO_DATA = {
   name: "Vishroy Seenarain",
   logoName: "Vishroy",
-  role: "Senior Frontend Engineer",
+  role: "Senior Software Engineer",
   location: "Grand Gaube, MU",
   email: "vishseenarain@gmail.com",
   hero: {
@@ -18,7 +18,7 @@ export const PORTFOLIO_DATA = {
   },
   experience: [
     {
-      role: "Senior Frontend Engineer",
+      role: "Senior Software Engineer",
       period: "2021 — Present",
       company: "TechFlow Systems, SF",
       description:

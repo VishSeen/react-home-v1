@@ -3,9 +3,23 @@ import { PORTFOLIO_DATA } from '../constants';
 
 interface HeroProps {
   loading?: boolean;
+  titleFirst?: string;
+  titleSecond?: string;
+  description?: string;
+  role?: string;
+  roleLabel?: string;
+  aboutLabel?: string;
 }
 
-export const Hero: React.FC<HeroProps> = ({ loading = false }) => {
+export const Hero: React.FC<HeroProps> = ({
+  loading = false,
+  titleFirst = PORTFOLIO_DATA.hero.titleFirst,
+  titleSecond = PORTFOLIO_DATA.hero.titleSecond,
+  description = PORTFOLIO_DATA.hero.description,
+  role = PORTFOLIO_DATA.role,
+  roleLabel = "Role",
+  aboutLabel = "About"
+}) => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -53,13 +67,13 @@ export const Hero: React.FC<HeroProps> = ({ loading = false }) => {
         {/* Left Col: Role & Description */}
         <div className="hidden md:flex md:col-span-3 flex-col justify-between h-full py-12 order-2 md:order-1">
           <div className={`${baseTransition} ${loading ? 'opacity-0 translate-y-8 blur-sm' : 'opacity-100 translate-y-0 blur-0'}`} style={{ transitionDelay: getDelay(1000) }}>
-            <span className="block text-xs font-mono uppercase tracking-widest text-secondary mb-2">Role</span>
-            <p className="text-primary font-medium">{PORTFOLIO_DATA.role}</p>
+            <span className="block text-xs font-mono uppercase tracking-widest text-secondary mb-2">{roleLabel}</span>
+            <p className="text-primary font-medium">{role}</p>
           </div>
 
           <div className={`${baseTransition} ${loading ? 'opacity-0 translate-y-8 blur-sm' : 'opacity-100 translate-y-0 blur-0'}`} style={{ transitionDelay: getDelay(1200) }}>
-            <span className="block text-xs font-mono uppercase tracking-widest text-secondary mb-2">About</span>
-            <p className="text-sm text-secondary leading-relaxed">{PORTFOLIO_DATA.hero.description}</p>
+            <span className="block text-xs font-mono uppercase tracking-widest text-secondary mb-2">{aboutLabel}</span>
+            <p className="text-sm text-secondary leading-relaxed">{description}</p>
           </div>
         </div>
 
@@ -86,7 +100,7 @@ export const Hero: React.FC<HeroProps> = ({ loading = false }) => {
             className={`absolute top-[15%] md:top-[20%] -left-4 md:-left-24 z-20 text-[12vw] md:text-[9vw] leading-none font-serif text-primary mix-blend-exclusion ${baseTransition} ${loading ? 'opacity-0 -translate-x-12 blur-md' : 'opacity-100 translate-x-0 blur-0'}`}
             style={{ transitionDelay: getDelay(800) }}
           >
-            {PORTFOLIO_DATA.hero.titleFirst}
+            {titleFirst}
           </h1>
 
           {/* Typography Layer 2: "Elegance" - Bottom (Earlier Reveal) */}
@@ -94,7 +108,7 @@ export const Hero: React.FC<HeroProps> = ({ loading = false }) => {
             className={`absolute bottom-[15%] md:bottom-[20%] -right-4 md:-right-32 z-30 text-[12vw] md:text-[9vw] leading-none font-serif italic text-primary ${baseTransition} ${loading ? 'opacity-0 translate-x-12 blur-md' : 'opacity-100 translate-x-0 blur-0'}`}
             style={{ transitionDelay: getDelay(300) }}
           >
-            {PORTFOLIO_DATA.hero.titleSecond}
+            {titleSecond}
           </h1>
         </div>
 
