@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { PORTFOLIO_DATA } from '../constants';
+'use client';
+
+import { useEffect, useState } from 'react';
+import { PORTFOLIO_DATA } from '@/lib/constants';
 
 interface PreloaderProps {
   onComplete: () => void;
 }
 
-export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
+export function Preloader({ onComplete }: PreloaderProps) {
   const [progress, setProgress] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
 
   useEffect(() => {
-    // Simulate loading with non-linear progress
     const timer = setInterval(() => {
-      setProgress(prev => {
+      setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(timer);
           return 100;
         }
-        // Random increment for organic feel
         const increment = Math.random() * 15;
         return Math.min(prev + increment, 100);
       });
@@ -30,8 +30,6 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
     if (progress === 100) {
       setTimeout(() => {
         setIsExiting(true);
-        // Trigger app load sequence slightly after curtain starts moving up.
-        // The curtain takes 1000ms to exit. Triggering at 200ms allows content to "wake up" under the rising curtain.
         setTimeout(onComplete, 200);
       }, 500);
     }
@@ -39,12 +37,17 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] bg-[#1A1A1A] text-[#F5F5F0] flex flex-col justify-between p-6 md:p-12 transition-transform duration-[1200ms] ease-[cubic-bezier(0.76,0,0.24,1)] ${isExiting ? '-translate-y-full' : 'translate-y-0'
-        }`}
+      className={`fixed inset-0 z-[100] bg-[#1A1A1A] text-[#F5F5F0] flex flex-col justify-between p-6 md:p-12 transition-transform duration-[1200ms] ease-[cubic-bezier(0.76,0,0.24,1)] ${
+        isExiting ? '-translate-y-full' : 'translate-y-0'
+      }`}
     >
       <div className="flex justify-between items-start opacity-50">
-        <span className="font-serif italic text-xl">{PORTFOLIO_DATA.logoName}.</span>
-        <span className="text-xs uppercase tracking-widest font-mono">Portfolio 2025</span>
+        <span className="font-serif italic text-xl">
+          {PORTFOLIO_DATA.logoName}.
+        </span>
+        <span className="text-xs uppercase tracking-widest font-mono">
+          Portfolio 2025
+        </span>
       </div>
 
       <div className="flex flex-col items-end">
@@ -61,4 +64,4 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
       </div>
     </div>
   );
-};
+}
