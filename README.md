@@ -8,11 +8,14 @@ A high-performance, aesthetically pleasing portfolio website featuring a Bento-g
 
 View your app in AI Studio: https://ai.studio/apps/drive/1IWYaF24TraLbKtdJngYF9IM175j1i9-P
 
+> **🎯 Can you use Sanity Studio with GitHub Pages?**  
+> **YES!** See **[ANSWER.md](./ANSWER.md)** for the complete answer and setup guide.
+
 ## 🚀 Features
 
 - Modern Next.js 15 with TypeScript
 - Deployed to GitHub Pages
-- **Sanity CMS Integration** for content management
+- **Sanity CMS Integration** for content management ✨ NEW
 - Tailwind CSS for styling
 - Gemini AI assistant
 
@@ -79,6 +82,7 @@ To deploy:
 
 ## 📚 Documentation
 
+- ✨ **[ANSWER.md](./ANSWER.md)** - **START HERE:** Direct answer to "Can I use Sanity Studio with GitHub Pages?"
 - 📖 **[Quick Start Guide](./QUICK_START.md)** - TL;DR for Sanity + GitHub Pages
 - 📘 **[Sanity Setup Guide](./SANITY_SETUP.md)** - Detailed setup instructions
 - 🚀 **[Deployment Guide](./DEPLOYMENT.md)** - Deploy both site and Studio
