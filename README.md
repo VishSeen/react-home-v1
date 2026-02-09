@@ -77,9 +77,16 @@ To deploy:
 1. Push to the `main` branch
 2. GitHub Actions will automatically build and deploy to GitHub Pages
 
-## 📚 Learn More
+## 📚 Documentation
+
+- 📖 **[Quick Start Guide](./QUICK_START.md)** - TL;DR for Sanity + GitHub Pages
+- 📘 **[Sanity Setup Guide](./SANITY_SETUP.md)** - Detailed setup instructions
+- 🚀 **[Deployment Guide](./DEPLOYMENT.md)** - Deploy both site and Studio
+- 📁 **[Studio README](./studio/README.md)** - Sanity Studio documentation
+
+## 📚 External Resources
 
 - [Next.js Documentation](https://nextjs.org/docs)
-- [Sanity Setup Guide](./SANITY_SETUP.md)
+- [Sanity Documentation](https://www.sanity.io/docs)
 - [Tailwind CSS](https://tailwindcss.com/docs)
 - [GitHub Pages](https://docs.github.com/en/pages)
