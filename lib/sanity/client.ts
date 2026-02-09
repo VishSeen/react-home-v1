@@ -7,8 +7,19 @@ export const sanityClient = createClient({
   apiVersion: '2024-01-01', // Use current date for latest API features
 })
 
+// Types for Sanity images
+interface SanityImageAsset {
+  _ref: string
+  _type: string
+}
+
+interface SanityImage {
+  asset: SanityImageAsset
+  [key: string]: any
+}
+
 // Helper function to get image URL
-export function urlForImage(source: any) {
+export function urlForImage(source: SanityImage | null | undefined) {
   if (!source || !source.asset) return ''
   
   const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'your-project-id'

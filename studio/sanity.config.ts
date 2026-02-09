@@ -7,8 +7,10 @@ export default defineConfig({
   name: 'default',
   title: 'Portfolio Studio',
 
-  projectId: 'your-project-id', // Replace with your Sanity project ID
-  dataset: 'production',
+  // Get project ID from environment variable or use placeholder
+  // You must replace this with your actual project ID from 'sanity init'
+  projectId: process.env.SANITY_STUDIO_PROJECT_ID || 'your-project-id',
+  dataset: process.env.SANITY_STUDIO_DATASET || 'production',
 
   plugins: [structureTool(), visionTool()],
 
