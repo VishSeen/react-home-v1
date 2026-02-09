@@ -1,5 +1,6 @@
 # dependencies
 /node_modules
+/studio/node_modules
 
 # next.js
 /.next/
@@ -7,6 +8,7 @@
 
 # production
 /build
+/studio/dist
 
 # misc
 .DS_Store
@@ -14,6 +16,10 @@
 
 # env files
 .env*.local
+/studio/.env*.local
+
+# sanity
+/studio/.sanity
 
 # typescript
 *.tsbuildinfo
