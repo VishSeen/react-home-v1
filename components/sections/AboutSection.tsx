@@ -1,8 +1,14 @@
 import { Reveal } from '@/components/ui/Reveal';
 import { PORTFOLIO_DATA } from '@/lib/constants';
 import { Fragment } from 'react';
+import type { SanitySiteSettings } from '@/lib/sanity';
 
-export function AboutSection() {
+interface AboutSectionProps {
+  settings?: SanitySiteSettings;
+}
+
+export function AboutSection({ settings }: AboutSectionProps) {
+  const data = settings ?? PORTFOLIO_DATA;
   return (
     <section id="about" className="py-32 px-6 md:px-12 bg-[#EAEAE5] relative">
       <div className="max-w-7xl mx-auto">
@@ -19,7 +25,7 @@ export function AboutSection() {
                 className="text-5xl md:text-7xl font-serif text-primary mt-6 leading-[1.1]"
                 dangerouslySetInnerHTML={{
                   __html:
-                    PORTFOLIO_DATA.about.title.replace(
+                    data.about.title.replace(
                       '&',
                       '&<br/><span class="italic text-secondary">'
                     ) + '</span>',
@@ -30,7 +36,7 @@ export function AboutSection() {
           <div className="md:col-span-8 flex items-end">
             <Reveal delay={400}>
               <p className="text-lg md:text-xl font-light leading-relaxed text-primary/80 max-w-2xl">
-                {PORTFOLIO_DATA.about.description}
+                {data.about.description}
               </p>
             </Reveal>
           </div>
@@ -48,7 +54,7 @@ export function AboutSection() {
               </h3>
             </Reveal>
             <div className="space-y-12">
-              {PORTFOLIO_DATA.experience.map((exp, idx) => (
+              {data.experience.map((exp, idx) => (
                 <Fragment key={idx}>
                   <Reveal delay={200 + idx * 200}>
                     <div className="group">
@@ -86,7 +92,7 @@ export function AboutSection() {
                     <span className="block text-xs uppercase tracking-widest text-primary/40 border-b border-primary/5 pb-2 mb-2">
                       Core
                     </span>
-                    {PORTFOLIO_DATA.stack.core.map((item, i) => (
+                    {data.stack.core.map((item, i) => (
                       <div key={i} className="text-primary font-light">
                         {item}
                       </div>
@@ -96,7 +102,7 @@ export function AboutSection() {
                     <span className="block text-xs uppercase tracking-widest text-primary/40 border-b border-primary/5 pb-2 mb-2">
                       Creative
                     </span>
-                    {PORTFOLIO_DATA.stack.creative.map((item, i) => (
+                    {data.stack.creative.map((item, i) => (
                       <div key={i} className="text-primary font-light">
                         {item}
                       </div>
@@ -106,7 +112,7 @@ export function AboutSection() {
                     <span className="block text-xs uppercase tracking-widest text-primary/40 border-b border-primary/5 pb-2 mb-2">
                       AI & Cloud
                     </span>
-                    {PORTFOLIO_DATA.stack.infrastructure.map((item, i) => (
+                    {data.stack.infrastructure.map((item, i) => (
                       <div key={i} className="text-primary font-light">
                         {item}
                       </div>
@@ -123,7 +129,7 @@ export function AboutSection() {
                   Capabilities
                 </h3>
                 <div className="flex flex-wrap gap-3">
-                  {PORTFOLIO_DATA.services.map((s) => (
+                  {data.services.map((s) => (
                     <span
                       key={s}
                       className="px-4 py-2 border border-primary/10 rounded-full text-sm font-light text-secondary hover:bg-white hover:border-transparent transition-all cursor-default"

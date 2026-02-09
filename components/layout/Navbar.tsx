@@ -5,8 +5,14 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { PORTFOLIO_DATA } from '@/lib/constants';
+import type { SanitySiteSettings } from '@/lib/sanity';
 
-export function Navbar() {
+interface NavbarProps {
+  settings?: SanitySiteSettings;
+}
+
+export function Navbar({ settings }: NavbarProps) {
+  const data = settings ?? PORTFOLIO_DATA;
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -69,7 +75,7 @@ export function Navbar() {
               isOpen ? 'text-[#F5F5F0]' : 'text-primary'
             }`}
           >
-            {PORTFOLIO_DATA.logoName}.
+            {data.logoName}.
           </Link>
 
           {/* Menu Toggle */}

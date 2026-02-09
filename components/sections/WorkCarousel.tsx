@@ -5,8 +5,14 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { PORTFOLIO_DATA } from '@/lib/constants';
 import { ProjectCard } from '@/components/ui/ProjectCard';
+import type { SanityProject } from '@/lib/sanity';
 
-export function WorkCarousel() {
+interface WorkCarouselProps {
+  projects?: SanityProject[];
+}
+
+export function WorkCarousel({ projects }: WorkCarouselProps) {
+  const resolvedProjects = projects ?? PORTFOLIO_DATA.projects;
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
@@ -106,7 +112,7 @@ export function WorkCarousel() {
             </div>
           </div>
 
-          {PORTFOLIO_DATA.projects.map((project, idx) => (
+          {resolvedProjects.map((project, idx) => (
             <ProjectCard key={idx} project={project} />
           ))}
 

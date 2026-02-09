@@ -7,20 +7,26 @@ import { AboutSection } from '@/components/sections/AboutSection';
 import { WorkCarousel } from '@/components/sections/WorkCarousel';
 import { Footer } from '@/components/layout/Footer';
 import { Preloader } from '@/components/ui/Preloader';
+import type { SanitySiteSettings, SanityProject } from '@/lib/sanity';
 
-export function HomeContent() {
+interface HomeContentProps {
+  settings: SanitySiteSettings;
+  projects: SanityProject[];
+}
+
+export function HomeContent({ settings, projects }: HomeContentProps) {
   const [loading, setLoading] = useState(true);
 
   return (
     <>
       {loading && <Preloader onComplete={() => setLoading(false)} />}
-      <Navbar />
+      <Navbar settings={settings} />
       <main>
-        <Hero loading={loading} />
-        <AboutSection />
-        <WorkCarousel />
+        <Hero loading={loading} settings={settings} />
+        <AboutSection settings={settings} />
+        <WorkCarousel projects={projects} />
       </main>
-      <Footer />
+      <Footer settings={settings} />
     </>
   );
 }

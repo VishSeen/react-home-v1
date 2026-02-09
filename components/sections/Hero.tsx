@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { PORTFOLIO_DATA } from '@/lib/constants';
+import type { SanitySiteSettings } from '@/lib/sanity';
 
 interface HeroProps {
   loading?: boolean;
@@ -12,18 +13,25 @@ interface HeroProps {
   roleLabel?: string;
   aboutLabel?: string;
   compact?: boolean;
+  settings?: SanitySiteSettings;
 }
 
 export function Hero({
   loading = false,
-  titleFirst = PORTFOLIO_DATA.hero.titleFirst,
-  titleSecond = PORTFOLIO_DATA.hero.titleSecond,
-  description = PORTFOLIO_DATA.hero.description,
-  role = PORTFOLIO_DATA.role,
+  titleFirst,
+  titleSecond,
+  description,
+  role,
   roleLabel = 'Role',
   aboutLabel = 'About',
   compact = false,
+  settings,
 }: HeroProps) {
+  const data = settings ?? PORTFOLIO_DATA;
+  const resolvedTitleFirst = titleFirst ?? data.hero.titleFirst;
+  const resolvedTitleSecond = titleSecond ?? data.hero.titleSecond;
+  const resolvedDescription = description ?? data.hero.description;
+  const resolvedRole = role ?? data.role;
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
@@ -78,7 +86,7 @@ export function Hero({
             <span className="block text-xs font-mono uppercase tracking-widest text-secondary mb-2">
               {roleLabel}
             </span>
-            <p className="text-primary font-medium">{role}</p>
+            <p className="text-primary font-medium">{resolvedRole}</p>
           </div>
 
           <div
@@ -93,7 +101,7 @@ export function Hero({
               {aboutLabel}
             </span>
             <p className="text-sm text-secondary leading-relaxed">
-              {description}
+              {resolvedDescription}
             </p>
           </div>
         </div>
@@ -108,7 +116,7 @@ export function Hero({
             }`}
             style={{ transitionDelay: getDelay(800), transform: `translateY(calc(-100% - 1rem))${isHidden ? ' translateX(-3rem)' : ''}` }}
           >
-            {titleFirst}
+            {resolvedTitleFirst}
           </h1>
 
           <h1
@@ -119,7 +127,7 @@ export function Hero({
             }`}
             style={{ transitionDelay: getDelay(300), transform: `translateY(1rem)${isHidden ? ' translateX(3rem)' : ''}` }}
           >
-            {titleSecond}
+            {resolvedTitleSecond}
           </h1>
         </div>
 
@@ -138,7 +146,7 @@ export function Hero({
                 Based in
               </span>
               <p className="text-primary font-medium">
-                {PORTFOLIO_DATA.location}
+                {data.location}
               </p>
             </div>
           )}

@@ -1,11 +1,12 @@
-import { PORTFOLIO_DATA } from '@/lib/constants';
 import { ProjectItem } from '@/components/ui/ProjectItem';
+import type { SanityProject } from '@/lib/sanity';
 
-export function ProjectGrid() {
-  const allProjects = [
-    ...PORTFOLIO_DATA.projects,
-    ...PORTFOLIO_DATA.projects,
-  ];
+interface ProjectGridProps {
+  projects: SanityProject[];
+}
+
+export function ProjectGrid({ projects }: ProjectGridProps) {
+  const allProjects = [...projects, ...projects];
 
   return (
     <section className="px-6 md:px-12 py-32 bg-background relative z-10">

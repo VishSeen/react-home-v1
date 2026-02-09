@@ -1,10 +1,10 @@
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 import { Reveal } from '@/components/ui/Reveal';
-import { PORTFOLIO_DATA } from '@/lib/constants';
+import type { SanityProject } from '@/lib/sanity';
 
 interface ProjectItemProps {
-  project: (typeof PORTFOLIO_DATA.projects)[0];
+  project: SanityProject;
   index: number;
 }
 

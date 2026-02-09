@@ -1,35 +1,45 @@
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { PORTFOLIO_DATA } from "@/lib/constants";
 import { ProjectDetail } from "@/components/project/ProjectDetail";
+import {
+  getProjects,
+  getProjectBySlug,
+  getProjectSlugs,
+  getSiteSettings,
+} from "@/lib/sanity";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
-  return PORTFOLIO_DATA.projects.map((project) => ({
-    slug: project.slug,
-  }));
+  const slugs = await getProjectSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const project = PORTFOLIO_DATA.projects.find((p) => p.slug === slug);
+  const [project, settings] = await Promise.all([
+    getProjectBySlug(slug),
+    getSiteSettings(),
+  ]);
 
   if (!project) return { title: "Project Not Found" };
 
   return {
-    title: `${project.title} — ${PORTFOLIO_DATA.name}`,
+    title: `${project.title} — ${settings.name}`,
     description: project.description,
   };
 }
 
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
-  const project = PORTFOLIO_DATA.projects.find((p) => p.slug === slug);
+  const [project, allProjects] = await Promise.all([
+    getProjectBySlug(slug),
+    getProjects(),
+  ]);
 
   if (!project) notFound();
 
-  return <ProjectDetail project={project} />;
+  return <ProjectDetail project={project} allProjects={allProjects} />;
 }

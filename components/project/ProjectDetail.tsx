@@ -3,16 +3,17 @@
 import { useState, useEffect } from "react";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import { PORTFOLIO_DATA } from "@/lib/constants";
+import type { SanityProject } from "@/lib/sanity";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Reveal } from "@/components/ui/Reveal";
 
 interface ProjectDetailProps {
-  project: (typeof PORTFOLIO_DATA.projects)[0];
+  project: SanityProject;
+  allProjects: SanityProject[];
 }
 
-export function ProjectDetail({ project }: ProjectDetailProps) {
+export function ProjectDetail({ project, allProjects }: ProjectDetailProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -21,11 +22,11 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
     });
   }, []);
 
-  const currentIndex = PORTFOLIO_DATA.projects.findIndex(
+  const currentIndex = allProjects.findIndex(
     (p) => p.slug === project.slug
   );
   const nextProject =
-    PORTFOLIO_DATA.projects[(currentIndex + 1) % PORTFOLIO_DATA.projects.length];
+    allProjects[(currentIndex + 1) % allProjects.length];
 
   return (
     <>

@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { PORTFOLIO_DATA } from '@/lib/constants';
+import type { SanityProject } from '@/lib/sanity';
 
 interface ProjectCardProps {
-  project: (typeof PORTFOLIO_DATA.projects)[0];
+  project: SanityProject;
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {

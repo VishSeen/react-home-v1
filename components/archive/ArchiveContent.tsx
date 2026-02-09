@@ -2,8 +2,13 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Hero } from '@/components/sections/Hero';
 import { Footer } from '@/components/layout/Footer';
 import { ProjectGrid } from '@/components/archive/ProjectGrid';
+import type { SanityProject } from '@/lib/sanity';
 
-export function ArchiveContent() {
+interface ArchiveContentProps {
+  projects: SanityProject[];
+}
+
+export function ArchiveContent({ projects }: ArchiveContentProps) {
   return (
     <>
       <Navbar />
@@ -16,7 +21,7 @@ export function ArchiveContent() {
         aboutLabel="Index"
         compact
       />
-      <ProjectGrid />
+      <ProjectGrid projects={projects} />
       <Footer />
     </>
   );
