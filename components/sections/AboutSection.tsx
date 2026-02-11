@@ -1,7 +1,7 @@
 import { Reveal } from '@/components/ui/Reveal';
 import { PORTFOLIO_DATA } from '@/lib/constants';
 import { Fragment } from 'react';
-import type { SanitySiteSettings } from '@/lib/sanity';
+import type { SanitySiteSettings } from '@/lib/tina';
 
 interface AboutSectionProps {
   settings?: SanitySiteSettings;

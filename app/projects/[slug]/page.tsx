@@ -6,7 +6,7 @@ import {
   getProjectBySlug,
   getProjectSlugs,
   getSiteSettings,
-} from "@/lib/sanity";
+} from "@/lib/tina";
 
 interface Props {
   params: Promise<{ slug: string }>;

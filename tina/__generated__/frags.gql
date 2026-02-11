@@ -1,0 +1,59 @@
+fragment GlobalParts on Global {
+  __typename
+  name
+  logoName
+  role
+  location
+  email
+  hero {
+    __typename
+    titleFirst
+    titleSecond
+    description
+    currentCompany
+  }
+  about {
+    __typename
+    title
+    description
+  }
+  experience {
+    __typename
+    role
+    period
+    company
+    description
+  }
+  stack {
+    __typename
+    core
+    creative
+    infrastructure
+  }
+  services
+  socials {
+    __typename
+    github
+    linkedin
+    twitter
+    dribbble
+  }
+}
+
+fragment ProjectParts on Project {
+  __typename
+  title
+  slug
+  displayId
+  category
+  year
+  client
+  description
+  longDescription
+  challenge
+  solution
+  image
+  tech
+  order
+  body
+}

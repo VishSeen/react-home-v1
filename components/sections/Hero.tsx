@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { PORTFOLIO_DATA } from '@/lib/constants';
-import type { SanitySiteSettings } from '@/lib/sanity';
+import type { SanitySiteSettings } from '@/lib/tina';
 
 interface HeroProps {
   loading?: boolean;

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import type { SanityProject } from "@/lib/sanity";
+import type { SanityProject } from "@/lib/tina";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Reveal } from "@/components/ui/Reveal";

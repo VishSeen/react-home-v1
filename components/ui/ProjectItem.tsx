@@ -1,7 +1,7 @@
 import { ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 import { Reveal } from '@/components/ui/Reveal';
-import type { SanityProject } from '@/lib/sanity';
+import type { SanityProject } from '@/lib/tina';
 
 interface ProjectItemProps {
   project: SanityProject;

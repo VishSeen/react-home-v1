@@ -2,7 +2,7 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Hero } from '@/components/sections/Hero';
 import { Footer } from '@/components/layout/Footer';
 import { ProjectGrid } from '@/components/archive/ProjectGrid';
-import type { SanityProject } from '@/lib/sanity';
+import type { SanityProject } from '@/lib/tina';
 
 interface ArchiveContentProps {
   projects: SanityProject[];

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ArchiveContent } from "@/components/archive/ArchiveContent";
-import { getProjects } from "@/lib/sanity";
+import { getProjects } from "@/lib/tina";
 
 export const metadata: Metadata = {
   title: "Selected Works | Vishroy Seenarain",

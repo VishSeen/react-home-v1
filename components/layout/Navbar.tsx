@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { PORTFOLIO_DATA } from '@/lib/constants';
-import type { SanitySiteSettings } from '@/lib/sanity';
+import type { SanitySiteSettings } from '@/lib/tina';
 
 interface NavbarProps {
   settings?: SanitySiteSettings;

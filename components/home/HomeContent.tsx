@@ -7,7 +7,7 @@ import { AboutSection } from '@/components/sections/AboutSection';
 import { WorkCarousel } from '@/components/sections/WorkCarousel';
 import { Footer } from '@/components/layout/Footer';
 import { Preloader } from '@/components/ui/Preloader';
-import type { SanitySiteSettings, SanityProject } from '@/lib/sanity';
+import type { SanitySiteSettings, SanityProject } from '@/lib/tina';
 
 interface HomeContentProps {
   settings: SanitySiteSettings;

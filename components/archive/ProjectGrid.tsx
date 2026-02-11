@@ -1,5 +1,5 @@
 import { ProjectItem } from '@/components/ui/ProjectItem';
-import type { SanityProject } from '@/lib/sanity';
+import type { SanityProject } from '@/lib/tina';
 
 interface ProjectGridProps {
   projects: SanityProject[];

@@ -1,11 +1,11 @@
-import { HomeContent } from "@/components/home/HomeContent";
-import { getProjects, getSiteSettings } from "@/lib/sanity";
+import { TinaHomeClient } from "@/components/home/TinaHomeClient";
+import { getSiteSettingsResponse, getProjectsResponse } from "@/lib/tina";
 
 export default async function HomePage() {
-  const [settings, projects] = await Promise.all([
-    getSiteSettings(),
-    getProjects(),
+  const [rawSettings, rawProjects] = await Promise.all([
+    getSiteSettingsResponse(),
+    getProjectsResponse(),
   ]);
 
-  return <HomeContent settings={settings} projects={projects} />;
+  return <TinaHomeClient rawSettings={rawSettings} rawProjects={rawProjects} />;
 }

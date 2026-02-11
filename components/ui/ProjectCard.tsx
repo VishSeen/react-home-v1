@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import type { SanityProject } from '@/lib/sanity';
+import type { SanityProject } from '@/lib/tina';
 
 interface ProjectCardProps {
   project: SanityProject;

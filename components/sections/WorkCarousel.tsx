@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { PORTFOLIO_DATA } from '@/lib/constants';
 import { ProjectCard } from '@/components/ui/ProjectCard';
-import type { SanityProject } from '@/lib/sanity';
+import type { SanityProject } from '@/lib/tina';
 
 interface WorkCarouselProps {
   projects?: SanityProject[];
