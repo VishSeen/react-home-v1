@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { ProjectDetail } from "@/components/project/ProjectDetail";
+import { TinaProjectDetailClient } from "@/components/project/TinaProjectDetailClient";
 import {
-  getProjects,
+  getProjectsResponse,
+  getProjectResponse,
   getProjectBySlug,
   getProjectSlugs,
   getSiteSettings,
@@ -34,12 +35,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
-  const [project, allProjects] = await Promise.all([
-    getProjectBySlug(slug),
-    getProjects(),
-  ]);
 
-  if (!project) notFound();
+  // Note: Validation if project exists should happen before fetch if possible or handle catch
+  try {
+    const [rawProject, rawAllProjects] = await Promise.all([
+      getProjectResponse(slug),
+      getProjectsResponse(),
+    ]);
 
-  return <ProjectDetail project={project} allProjects={allProjects} />;
+    return <TinaProjectDetailClient rawProject={rawProject} rawAllProjects={rawAllProjects} />;
+  } catch (error) {
+    return notFound();
+  }
 }

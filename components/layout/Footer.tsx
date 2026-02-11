@@ -33,24 +33,17 @@ export function Footer({ settings }: FooterProps) {
           </div>
 
           <div className="flex gap-12">
-            <a
-              href={data.socials.linkedin}
-              className="hover:text-primary transition-colors"
-            >
-              LinkedIn
-            </a>
-            <a
-              href={data.socials.instagram}
-              className="hover:text-primary transition-colors"
-            >
-              Instagram
-            </a>
-            <a
-              href={data.socials.github}
-              className="hover:text-primary transition-colors"
-            >
-              GitHub
-            </a>
+            {data.socials?.map((link) => (
+              <a
+                key={link.title}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary transition-colors"
+              >
+                {link.title}
+              </a>
+            ))}
           </div>
         </div>
       </div>

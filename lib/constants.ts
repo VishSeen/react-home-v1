@@ -130,9 +130,9 @@ export const PORTFOLIO_DATA = {
       tech: ["TypeScript", "Storybook", "A11y", "Chromatic", "Web Components"],
     },
   ],
-  socials: {
-    linkedin: "https://www.linkedin.com/in/seenarain-vishroy-110507123/",
-    github: "https://github.com/VishSeen",
-    instagram: "https://www.instagram.com/vishroy_codes/",
-  },
+  socials: [
+    { title: "LinkedIn", url: "https://www.linkedin.com/in/seenarain-vishroy-110507123/" },
+    { title: "GitHub", url: "https://github.com/VishSeen" },
+    { title: "Instagram", url: "https://www.instagram.com/vishroy_codes/" },
+  ],
 };

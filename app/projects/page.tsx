@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { ArchiveContent } from "@/components/archive/ArchiveContent";
-import { getProjects } from "@/lib/tina";
+import { TinaProjectsClient } from "@/components/archive/TinaProjectsClient";
+import { getProjectsResponse } from "@/lib/tina";
 
 export const metadata: Metadata = {
   title: "Selected Works | Vishroy Seenarain",
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ArchivePage() {
-  const projects = await getProjects();
+  const rawProjects = await getProjectsResponse();
 
-  return <ArchiveContent projects={projects} />;
+  return <TinaProjectsClient rawProjects={rawProjects} />;
 }

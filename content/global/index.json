@@ -6,9 +6,9 @@
   "email": "vishseenarain@gmail.com",
   "hero": {
     "titleFirst": "Vishroy",
-    "titleSecond": "Seenarain.",
+    "titleSecond": "Seenarain",
     "description": "I architect high-performance digital experiences that merge technical precision with editorial aesthetics.",
-    "currentCompany": "TechFlow"
+    "currentCompany": ""
   },
   "about": {
     "title": "Bridging Logic & Emotion",
@@ -60,9 +60,14 @@
     "Design Systems",
     "Creative Direction"
   ],
-  "socials": {
-    "linkedin": "https://www.linkedin.com/in/seenarain-vishroy-110507123/",
-    "github": "https://github.com/VishSeen",
-    "instagram": "https://www.instagram.com/vishroy_codes/"
-  }
+  "socials": [
+    {
+      "title": "GitHub",
+      "url": "https://github.com/VishSeen"
+    },
+    {
+      "title": "LinkedIn",
+      "url": "https://www.linkedin.com/in/seenarain-vishroy-110507123/"
+    }
+  ]
 }

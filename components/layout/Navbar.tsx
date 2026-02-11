@@ -164,24 +164,17 @@ export function Navbar({ settings }: NavbarProps) {
                 Connect
               </span>
               <div className="flex flex-col gap-2 mt-4">
-                <a
-                  href={PORTFOLIO_DATA.socials.linkedin}
-                  className="hover:text-white transition-colors hover:translate-x-2 duration-300 w-fit"
-                >
-                  LinkedIn
-                </a>
-                <a
-                  href={PORTFOLIO_DATA.socials.instagram}
-                  className="hover:text-white transition-colors hover:translate-x-2 duration-300 w-fit"
-                >
-                  Instagram
-                </a>
-                <a
-                  href={PORTFOLIO_DATA.socials.github}
-                  className="hover:text-white transition-colors hover:translate-x-2 duration-300 w-fit"
-                >
-                  GitHub
-                </a>
+                {(data.socials ?? PORTFOLIO_DATA.socials)?.map((link: any) => (
+                  <a
+                    key={link.title}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-white transition-colors hover:translate-x-2 duration-300 w-fit"
+                  >
+                    {link.title}
+                  </a>
+                ))}
               </div>
             </div>
           </div>

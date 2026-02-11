@@ -214,10 +214,8 @@ export type GlobalStack = {
 
 export type GlobalSocials = {
   __typename?: 'GlobalSocials';
-  github?: Maybe<Scalars['String']['output']>;
-  linkedin?: Maybe<Scalars['String']['output']>;
-  twitter?: Maybe<Scalars['String']['output']>;
-  dribbble?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
+  url: Scalars['String']['output'];
 };
 
 export type Global = Node & Document & {
@@ -232,7 +230,7 @@ export type Global = Node & Document & {
   experience?: Maybe<Array<Maybe<GlobalExperience>>>;
   stack?: Maybe<GlobalStack>;
   services?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  socials?: Maybe<GlobalSocials>;
+  socials?: Maybe<Array<Maybe<GlobalSocials>>>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
@@ -271,10 +269,8 @@ export type GlobalStackFilter = {
 };
 
 export type GlobalSocialsFilter = {
-  github?: InputMaybe<StringFilter>;
-  linkedin?: InputMaybe<StringFilter>;
-  twitter?: InputMaybe<StringFilter>;
-  dribbble?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  url?: InputMaybe<StringFilter>;
 };
 
 export type GlobalFilter = {
@@ -309,6 +305,7 @@ export type Project = Node & Document & {
   title: Scalars['String']['output'];
   slug: Scalars['String']['output'];
   displayId?: Maybe<Scalars['String']['output']>;
+  order?: Maybe<Scalars['Float']['output']>;
   category?: Maybe<Scalars['String']['output']>;
   year?: Maybe<Scalars['String']['output']>;
   client?: Maybe<Scalars['String']['output']>;
@@ -318,18 +315,10 @@ export type Project = Node & Document & {
   solution?: Maybe<Scalars['String']['output']>;
   image?: Maybe<Scalars['String']['output']>;
   tech?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  order?: Maybe<Scalars['Float']['output']>;
   body?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
   _sys: SystemInfo;
   _values: Scalars['JSON']['output'];
-};
-
-export type ImageFilter = {
-  startsWith?: InputMaybe<Scalars['String']['input']>;
-  eq?: InputMaybe<Scalars['String']['input']>;
-  exists?: InputMaybe<Scalars['Boolean']['input']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type NumberFilter = {
@@ -342,6 +331,13 @@ export type NumberFilter = {
   in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
 };
 
+export type ImageFilter = {
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
 export type RichTextFilter = {
   startsWith?: InputMaybe<Scalars['String']['input']>;
   eq?: InputMaybe<Scalars['String']['input']>;
@@ -352,6 +348,7 @@ export type ProjectFilter = {
   title?: InputMaybe<StringFilter>;
   slug?: InputMaybe<StringFilter>;
   displayId?: InputMaybe<StringFilter>;
+  order?: InputMaybe<NumberFilter>;
   category?: InputMaybe<StringFilter>;
   year?: InputMaybe<StringFilter>;
   client?: InputMaybe<StringFilter>;
@@ -361,7 +358,6 @@ export type ProjectFilter = {
   solution?: InputMaybe<StringFilter>;
   image?: InputMaybe<ImageFilter>;
   tech?: InputMaybe<StringFilter>;
-  order?: InputMaybe<NumberFilter>;
   body?: InputMaybe<RichTextFilter>;
 };
 
@@ -485,10 +481,8 @@ export type GlobalStackMutation = {
 };
 
 export type GlobalSocialsMutation = {
-  github?: InputMaybe<Scalars['String']['input']>;
-  linkedin?: InputMaybe<Scalars['String']['input']>;
-  twitter?: InputMaybe<Scalars['String']['input']>;
-  dribbble?: InputMaybe<Scalars['String']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type GlobalMutation = {
@@ -502,13 +496,14 @@ export type GlobalMutation = {
   experience?: InputMaybe<Array<InputMaybe<GlobalExperienceMutation>>>;
   stack?: InputMaybe<GlobalStackMutation>;
   services?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  socials?: InputMaybe<GlobalSocialsMutation>;
+  socials?: InputMaybe<Array<InputMaybe<GlobalSocialsMutation>>>;
 };
 
 export type ProjectMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
   displayId?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Scalars['Float']['input']>;
   category?: InputMaybe<Scalars['String']['input']>;
   year?: InputMaybe<Scalars['String']['input']>;
   client?: InputMaybe<Scalars['String']['input']>;
@@ -518,20 +513,19 @@ export type ProjectMutation = {
   solution?: InputMaybe<Scalars['String']['input']>;
   image?: InputMaybe<Scalars['String']['input']>;
   tech?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  order?: InputMaybe<Scalars['Float']['input']>;
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type GlobalPartsFragment = { __typename: 'Global', name?: string | null, logoName?: string | null, role?: string | null, location?: string | null, email?: string | null, services?: Array<string | null> | null, hero?: { __typename: 'GlobalHero', titleFirst?: string | null, titleSecond?: string | null, description?: string | null, currentCompany?: string | null } | null, about?: { __typename: 'GlobalAbout', title?: string | null, description?: string | null } | null, experience?: Array<{ __typename: 'GlobalExperience', role?: string | null, period?: string | null, company?: string | null, description?: string | null } | null> | null, stack?: { __typename: 'GlobalStack', core?: Array<string | null> | null, creative?: Array<string | null> | null, infrastructure?: Array<string | null> | null } | null, socials?: { __typename: 'GlobalSocials', github?: string | null, linkedin?: string | null, twitter?: string | null, dribbble?: string | null } | null };
+export type GlobalPartsFragment = { __typename: 'Global', name?: string | null, logoName?: string | null, role?: string | null, location?: string | null, email?: string | null, services?: Array<string | null> | null, hero?: { __typename: 'GlobalHero', titleFirst?: string | null, titleSecond?: string | null, description?: string | null, currentCompany?: string | null } | null, about?: { __typename: 'GlobalAbout', title?: string | null, description?: string | null } | null, experience?: Array<{ __typename: 'GlobalExperience', role?: string | null, period?: string | null, company?: string | null, description?: string | null } | null> | null, stack?: { __typename: 'GlobalStack', core?: Array<string | null> | null, creative?: Array<string | null> | null, infrastructure?: Array<string | null> | null } | null, socials?: Array<{ __typename: 'GlobalSocials', title: string, url: string } | null> | null };
 
-export type ProjectPartsFragment = { __typename: 'Project', title: string, slug: string, displayId?: string | null, category?: string | null, year?: string | null, client?: string | null, description?: string | null, longDescription?: string | null, challenge?: string | null, solution?: string | null, image?: string | null, tech?: Array<string | null> | null, order?: number | null, body?: any | null };
+export type ProjectPartsFragment = { __typename: 'Project', title: string, slug: string, displayId?: string | null, order?: number | null, category?: string | null, year?: string | null, client?: string | null, description?: string | null, longDescription?: string | null, challenge?: string | null, solution?: string | null, image?: string | null, tech?: Array<string | null> | null, body?: any | null };
 
 export type GlobalQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type GlobalQuery = { __typename?: 'Query', global: { __typename: 'Global', id: string, name?: string | null, logoName?: string | null, role?: string | null, location?: string | null, email?: string | null, services?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'GlobalHero', titleFirst?: string | null, titleSecond?: string | null, description?: string | null, currentCompany?: string | null } | null, about?: { __typename: 'GlobalAbout', title?: string | null, description?: string | null } | null, experience?: Array<{ __typename: 'GlobalExperience', role?: string | null, period?: string | null, company?: string | null, description?: string | null } | null> | null, stack?: { __typename: 'GlobalStack', core?: Array<string | null> | null, creative?: Array<string | null> | null, infrastructure?: Array<string | null> | null } | null, socials?: { __typename: 'GlobalSocials', github?: string | null, linkedin?: string | null, twitter?: string | null, dribbble?: string | null } | null } };
+export type GlobalQuery = { __typename?: 'Query', global: { __typename: 'Global', id: string, name?: string | null, logoName?: string | null, role?: string | null, location?: string | null, email?: string | null, services?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'GlobalHero', titleFirst?: string | null, titleSecond?: string | null, description?: string | null, currentCompany?: string | null } | null, about?: { __typename: 'GlobalAbout', title?: string | null, description?: string | null } | null, experience?: Array<{ __typename: 'GlobalExperience', role?: string | null, period?: string | null, company?: string | null, description?: string | null } | null> | null, stack?: { __typename: 'GlobalStack', core?: Array<string | null> | null, creative?: Array<string | null> | null, infrastructure?: Array<string | null> | null } | null, socials?: Array<{ __typename: 'GlobalSocials', title: string, url: string } | null> | null } };
 
 export type GlobalConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -543,14 +537,14 @@ export type GlobalConnectionQueryVariables = Exact<{
 }>;
 
 
-export type GlobalConnectionQuery = { __typename?: 'Query', globalConnection: { __typename?: 'GlobalConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'GlobalConnectionEdges', cursor: string, node?: { __typename: 'Global', id: string, name?: string | null, logoName?: string | null, role?: string | null, location?: string | null, email?: string | null, services?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'GlobalHero', titleFirst?: string | null, titleSecond?: string | null, description?: string | null, currentCompany?: string | null } | null, about?: { __typename: 'GlobalAbout', title?: string | null, description?: string | null } | null, experience?: Array<{ __typename: 'GlobalExperience', role?: string | null, period?: string | null, company?: string | null, description?: string | null } | null> | null, stack?: { __typename: 'GlobalStack', core?: Array<string | null> | null, creative?: Array<string | null> | null, infrastructure?: Array<string | null> | null } | null, socials?: { __typename: 'GlobalSocials', github?: string | null, linkedin?: string | null, twitter?: string | null, dribbble?: string | null } | null } | null } | null> | null } };
+export type GlobalConnectionQuery = { __typename?: 'Query', globalConnection: { __typename?: 'GlobalConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'GlobalConnectionEdges', cursor: string, node?: { __typename: 'Global', id: string, name?: string | null, logoName?: string | null, role?: string | null, location?: string | null, email?: string | null, services?: Array<string | null> | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, hero?: { __typename: 'GlobalHero', titleFirst?: string | null, titleSecond?: string | null, description?: string | null, currentCompany?: string | null } | null, about?: { __typename: 'GlobalAbout', title?: string | null, description?: string | null } | null, experience?: Array<{ __typename: 'GlobalExperience', role?: string | null, period?: string | null, company?: string | null, description?: string | null } | null> | null, stack?: { __typename: 'GlobalStack', core?: Array<string | null> | null, creative?: Array<string | null> | null, infrastructure?: Array<string | null> | null } | null, socials?: Array<{ __typename: 'GlobalSocials', title: string, url: string } | null> | null } | null } | null> | null } };
 
 export type ProjectQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
 }>;
 
 
-export type ProjectQuery = { __typename?: 'Query', project: { __typename: 'Project', id: string, title: string, slug: string, displayId?: string | null, category?: string | null, year?: string | null, client?: string | null, description?: string | null, longDescription?: string | null, challenge?: string | null, solution?: string | null, image?: string | null, tech?: Array<string | null> | null, order?: number | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type ProjectQuery = { __typename?: 'Query', project: { __typename: 'Project', id: string, title: string, slug: string, displayId?: string | null, order?: number | null, category?: string | null, year?: string | null, client?: string | null, description?: string | null, longDescription?: string | null, challenge?: string | null, solution?: string | null, image?: string | null, tech?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type ProjectConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -562,7 +556,7 @@ export type ProjectConnectionQueryVariables = Exact<{
 }>;
 
 
-export type ProjectConnectionQuery = { __typename?: 'Query', projectConnection: { __typename?: 'ProjectConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ProjectConnectionEdges', cursor: string, node?: { __typename: 'Project', id: string, title: string, slug: string, displayId?: string | null, category?: string | null, year?: string | null, client?: string | null, description?: string | null, longDescription?: string | null, challenge?: string | null, solution?: string | null, image?: string | null, tech?: Array<string | null> | null, order?: number | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type ProjectConnectionQuery = { __typename?: 'Query', projectConnection: { __typename?: 'ProjectConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'ProjectConnectionEdges', cursor: string, node?: { __typename: 'Project', id: string, title: string, slug: string, displayId?: string | null, order?: number | null, category?: string | null, year?: string | null, client?: string | null, description?: string | null, longDescription?: string | null, challenge?: string | null, solution?: string | null, image?: string | null, tech?: Array<string | null> | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export const GlobalPartsFragmentDoc = gql`
     fragment GlobalParts on Global {
@@ -600,10 +594,8 @@ export const GlobalPartsFragmentDoc = gql`
   services
   socials {
     __typename
-    github
-    linkedin
-    twitter
-    dribbble
+    title
+    url
   }
 }
     `;
@@ -613,6 +605,7 @@ export const ProjectPartsFragmentDoc = gql`
   title
   slug
   displayId
+  order
   category
   year
   client
@@ -622,7 +615,6 @@ export const ProjectPartsFragmentDoc = gql`
   solution
   image
   tech
-  order
   body
 }
     `;
@@ -802,7 +794,7 @@ export const ExperimentalGetTinaClient = () =>
   getSdk(
     generateRequester(
       createClient({
-        url: "https://content.tinajs.io/2.1/content/dummy/github/main",
+        url: "http://localhost:4001/graphql",
         queries,
       })
     )

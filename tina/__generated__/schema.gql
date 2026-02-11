@@ -116,10 +116,8 @@ type GlobalStack {
 }
 
 type GlobalSocials {
-  github: String
-  linkedin: String
-  twitter: String
-  dribbble: String
+  title: String!
+  url: String!
 }
 
 type Global implements Node & Document {
@@ -133,7 +131,7 @@ type Global implements Node & Document {
   experience: [GlobalExperience]
   stack: GlobalStack
   services: [String]
-  socials: GlobalSocials
+  socials: [GlobalSocials]
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
@@ -172,10 +170,8 @@ input GlobalStackFilter {
 }
 
 input GlobalSocialsFilter {
-  github: StringFilter
-  linkedin: StringFilter
-  twitter: StringFilter
-  dribbble: StringFilter
+  title: StringFilter
+  url: StringFilter
 }
 
 input GlobalFilter {
@@ -207,6 +203,7 @@ type Project implements Node & Document {
   title: String!
   slug: String!
   displayId: String
+  order: Float
   category: String
   year: String
   client: String
@@ -216,18 +213,10 @@ type Project implements Node & Document {
   solution: String
   image: String
   tech: [String]
-  order: Float
   body: JSON
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
-}
-
-input ImageFilter {
-  startsWith: String
-  eq: String
-  exists: Boolean
-  in: [String]
 }
 
 input NumberFilter {
@@ -240,6 +229,13 @@ input NumberFilter {
   in: [Float]
 }
 
+input ImageFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
 input RichTextFilter {
   startsWith: String
   eq: String
@@ -250,6 +246,7 @@ input ProjectFilter {
   title: StringFilter
   slug: StringFilter
   displayId: StringFilter
+  order: NumberFilter
   category: StringFilter
   year: StringFilter
   client: StringFilter
@@ -259,7 +256,6 @@ input ProjectFilter {
   solution: StringFilter
   image: ImageFilter
   tech: StringFilter
-  order: NumberFilter
   body: RichTextFilter
 }
 
@@ -323,10 +319,8 @@ input GlobalStackMutation {
 }
 
 input GlobalSocialsMutation {
-  github: String
-  linkedin: String
-  twitter: String
-  dribbble: String
+  title: String
+  url: String
 }
 
 input GlobalMutation {
@@ -340,13 +334,14 @@ input GlobalMutation {
   experience: [GlobalExperienceMutation]
   stack: GlobalStackMutation
   services: [String]
-  socials: GlobalSocialsMutation
+  socials: [GlobalSocialsMutation]
 }
 
 input ProjectMutation {
   title: String
   slug: String
   displayId: String
+  order: Float
   category: String
   year: String
   client: String
@@ -356,7 +351,6 @@ input ProjectMutation {
   solution: String
   image: String
   tech: [String]
-  order: Float
   body: JSON
 }
 

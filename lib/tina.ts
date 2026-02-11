@@ -1,5 +1,10 @@
 import { createClient } from "tinacms/dist/client";
 import { queries } from "../tina/__generated__/types";
+import { mapProject, mapSiteSettings, SanityProject, SanitySiteSettings } from "./tina-helpers";
+
+// Re-export types/helpers so old imports (if any remaining) don't break immediately
+// though we prefer importing from tina-helpers for pure functions
+export * from "./tina-helpers";
 
 const branch =
   process.env.NEXT_PUBLIC_TINA_BRANCH ||
@@ -10,7 +15,7 @@ const branch =
 // Use local GraphQL server in development, or Tina Cloud in production
 const apiURL =
   process.env.NODE_ENV === "development"
-    ? "http://localhost:4001/graphql"
+    ? "http://[::1]:4001/graphql"
     : `https://content.tinajs.io/1.4/content/${process.env.NEXT_PUBLIC_TINA_CLIENT_ID}/github/${branch}`;
 
 export const client = createClient({
@@ -19,98 +24,6 @@ export const client = createClient({
   queries,
 });
 
-// Define Types matching the application usage
-export interface SanityProject {
-  id: string;
-  slug: string;
-  title: string;
-  category: string;
-  year: string;
-  client: string;
-  description: string;
-  longDescription: string;
-  challenge: string;
-  solution: string;
-  image: string;
-  tech: string[];
-}
-
-export interface SanitySiteSettings {
-  name: string;
-  role: string;
-  about: {
-    title: string;
-    description: string;
-  };
-  experience: {
-    role: string;
-    period: string;
-    company: string;
-    description: string;
-  }[];
-  stack: {
-    core: string[];
-    creative: string[];
-    infrastructure: string[];
-  };
-  services: string[];
-  socials: {
-    github?: string;
-    linkedin?: string;
-    twitter?: string;
-    dribbble?: string;
-  };
-}
-
-// Helper to map Tina project response to SanityProject interface
-export const mapProject = (project: any): SanityProject => {
-  if (!project) return {} as SanityProject;
-  return {
-    id: project.displayId || '',
-    slug: project.slug,
-    title: project.title,
-    category: project.category || '',
-    year: project.year || '',
-    client: project.client || '',
-    description: project.description || '',
-    longDescription: project.longDescription || '',
-    challenge: project.challenge || '',
-    solution: project.solution || '',
-    image: project.image || '',
-    tech: project.tech || [],
-  };
-};
-
-export const mapSiteSettings = (data: any): SanitySiteSettings => {
-  if (!data) return {} as SanitySiteSettings;
-  return {
-    name: data.name || '',
-    role: data.role || '',
-    about: {
-      title: data.about?.title || '',
-      description: data.about?.description || '',
-    },
-    experience: (data.experience || []).map((exp: any) => ({
-      role: exp?.role || '',
-      period: exp?.period || '',
-      company: exp?.company || '',
-      description: exp?.description || '',
-    })),
-    stack: {
-      core: (data.stack?.core as string[]) || [],
-      creative: (data.stack?.creative as string[]) || [],
-      infrastructure: (data.stack?.infrastructure as string[]) || [],
-    },
-    services: (data.services as string[]) || [],
-    socials: {
-      github: data.socials?.github || '',
-      linkedin: data.socials?.linkedin || '',
-      twitter: data.socials?.twitter || '',
-      dribbble: data.socials?.dribbble || '',
-    },
-  };
-};
-
 // --- Raw Data Fetchers for Visual Editing ---
 
 export const getSiteSettingsResponse = async () => {
@@ -118,8 +31,8 @@ export const getSiteSettingsResponse = async () => {
 };
 
 export const getProjectsResponse = async () => {
-    // For visual editing of a list, we just return the connection query
-    return client.queries.projectConnection();
+    // Fetch all projects (override default pagination limit)
+    return client.queries.projectConnection({ first: 100 });
 };
 
 export const getProjectResponse = async (slug: string) => {
@@ -171,7 +84,7 @@ export const getProjectBySlug = async (slug: string): Promise<SanityProject | nu
 
 export const getProjectSlugs = async (): Promise<string[]> => {
   try {
-    const res = await client.queries.projectConnection();
+    const res = await client.queries.projectConnection({ first: 100 });
     return res.data.projectConnection.edges
       ?.map((edge) => edge?.node?.slug)
       .filter((slug): slug is string => !!slug) || [];

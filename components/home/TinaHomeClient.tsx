@@ -2,7 +2,7 @@
 
 import { useTina } from "tinacms/dist/react";
 import { HomeContent } from "@/components/home/HomeContent";
-import { mapSiteSettings, mapProject } from "@/lib/tina";
+import { mapSiteSettings, mapProject } from "@/lib/tina-helpers";
 
 export function TinaHomeClient({ rawSettings, rawProjects }: { rawSettings: any, rawProjects: any }) {
   // Use useTina hook to make the data editable
@@ -21,12 +21,15 @@ export function TinaHomeClient({ rawSettings, rawProjects }: { rawSettings: any,
   // Transform data back to the format the UI expects
   const settings = mapSiteSettings(settingsData.global);
 
-  const projects = projectsData.projectConnection.edges
+  const allProjects = projectsData.projectConnection.edges
       ?.map((edge: any) => edge?.node)
       .filter((node: any) => node !== undefined && node !== null)
       .map(mapProject)
       .sort((a: any, b: any) => a.id.localeCompare(b.id))
       || [];
+
+  // Only show the 3 most recent projects on the homepage
+  const projects = allProjects.slice(0, 3);
 
   return <HomeContent settings={settings} projects={projects} />;
 }
