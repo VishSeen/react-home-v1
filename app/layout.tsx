@@ -28,6 +28,7 @@ export default function RootLayout({
 }) {
   return (
     <html
+      suppressHydrationWarning
       lang="en"
       className={`scroll-smooth ${italiana.variable} ${manrope.variable}`}
     >

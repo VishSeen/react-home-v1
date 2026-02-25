@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "tinacms dev -c \"next dev\"",
-    "build": "tinacms build && next build",
+    "build": "tinacms build && BUILD_TINA=true next build",
     "start": "next start",
     "lint": "next lint"
   },

@@ -12,10 +12,10 @@ const branch =
   process.env.HEAD ||
   "main";
 
-// Use local GraphQL server in development, or Tina Cloud in production
+// Use local GraphQL server in development/build, or Tina Cloud in production
 const apiURL =
-  process.env.NODE_ENV === "development"
-    ? "http://[::1]:4001/graphql"
+  process.env.NODE_ENV === "development" || process.env.BUILD_TINA === "true"
+    ? "http://localhost:4001/graphql"
     : `https://content.tinajs.io/1.4/content/${process.env.NEXT_PUBLIC_TINA_CLIENT_ID}/github/${branch}`;
 
 export const client = createClient({
