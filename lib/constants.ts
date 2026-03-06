@@ -4,6 +4,7 @@ export const PORTFOLIO_DATA = {
   role: "Senior Software Engineer",
   location: "Grand Gaube, MU",
   email: "vishseenarain@gmail.com",
+  phone: "+230 5936 8556",
   hero: {
     titleFirst: "Vishroy",
     titleSecond: "Seenarain.",
@@ -131,7 +132,10 @@ export const PORTFOLIO_DATA = {
     },
   ],
   socials: [
-    { title: "LinkedIn", url: "https://www.linkedin.com/in/seenarain-vishroy-110507123/" },
+    {
+      title: "LinkedIn",
+      url: "https://www.linkedin.com/in/seenarain-vishroy-110507123/",
+    },
     { title: "GitHub", url: "https://github.com/VishSeen" },
     { title: "Instagram", url: "https://www.instagram.com/vishroy_codes/" },
   ],

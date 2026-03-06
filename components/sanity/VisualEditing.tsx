@@ -1,6 +1,6 @@
 "use client";
 
-import { enableVisualEditing, type HistoryAdapterNavigate } from "@sanity/visual-editing";
+// Sanity visual editing removed. Use TinaCMS visual editing if needed.
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 

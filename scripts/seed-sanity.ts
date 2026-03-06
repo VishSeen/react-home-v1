@@ -12,9 +12,6 @@
 import { config } from "dotenv";
 config({ path: ".env.local" });
 
-import { createClient } from "@sanity/client";
-import { PORTFOLIO_DATA } from "../lib/constants";
-
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
 const token = process.env.SANITY_AUTH_TOKEN;
@@ -25,14 +22,6 @@ if (!projectId || !token) {
   );
   process.exit(1);
 }
-
-const client = createClient({
-  projectId,
-  dataset,
-  token,
-  apiVersion: "2024-01-01",
-  useCdn: false,
-});
 
 async function seed() {
   console.log("🌱 Seeding Sanity...\n");

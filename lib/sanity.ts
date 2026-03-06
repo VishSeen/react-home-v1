@@ -1,6 +1,5 @@
-import { createClient, type SanityClient } from "@sanity/client";
-import imageUrlBuilder from "@sanity/image-url";
-import { PORTFOLIO_DATA } from "./constants";
+// Sanity CMS removed. Use TinaCMS for content management.
+// ...existing code using TinaCMS or static data...
 
 export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "";
 export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";

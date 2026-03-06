@@ -61,19 +61,17 @@ export function Navbar({ settings }: NavbarProps) {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 w-full z-[95] px-6 md:px-12 transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          scrolled && !isOpen
+        className={`fixed top-0 left-0 w-full z-[95] px-6 md:px-12 transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${scrolled && !isOpen
             ? 'py-4 bg-[#F5F5F0]/80 backdrop-blur-md border-b border-primary/5'
             : 'py-6 md:py-8 bg-transparent'
-        } ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}
+          } ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}
       >
         <div className="flex justify-between items-center relative">
           {/* Logo */}
           <Link
             href="/"
-            className={`font-serif text-2xl tracking-tight relative z-[70] transition-colors duration-500 ${
-              isOpen ? 'text-[#F5F5F0]' : 'text-primary'
-            }`}
+            className={`font-serif text-2xl tracking-tight relative z-[70] transition-colors duration-500 ${isOpen ? 'text-[#F5F5F0]' : 'text-primary'
+              }`}
           >
             {data.logoName}.
           </Link>
@@ -81,20 +79,18 @@ export function Navbar({ settings }: NavbarProps) {
           {/* Menu Toggle */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`group flex items-center gap-4 relative z-[70] transition-colors duration-500 ${
-              isOpen ? 'text-[#F5F5F0]' : 'text-primary'
-            }`}
+            className={`group flex items-center gap-4 relative z-[70] transition-colors duration-500 ${isOpen ? 'text-[#F5F5F0]' : 'text-primary'
+              }`}
             aria-label="Toggle Menu"
           >
             <span className="text-xs font-medium tracking-[0.2em] uppercase hidden md:block opacity-60 group-hover:opacity-100 transition-opacity">
               {isOpen ? 'Close' : 'Menu'}
             </span>
             <div
-              className={`w-12 h-12 rounded-full flex items-center justify-center border transition-all duration-500 ${
-                isOpen
+              className={`w-12 h-12 rounded-full flex items-center justify-center border transition-all duration-500 ${isOpen
                   ? 'border-[#F5F5F0]/20 bg-[#F5F5F0]/10 rotate-90'
                   : 'border-primary/10 hover:border-primary/30 hover:bg-primary/5'
-              }`}
+                }`}
             >
               {isOpen ? (
                 <X size={20} strokeWidth={1} />
@@ -108,11 +104,10 @@ export function Navbar({ settings }: NavbarProps) {
 
       {/* Full Screen Overlay */}
       <div
-        className={`fixed inset-0 z-[90] bg-[#1A1A1A] flex flex-col justify-center px-6 md:px-12 transition-all duration-1000 ease-[cubic-bezier(0.87,0,0.13,1)] ${
-          isOpen
+        className={`fixed inset-0 z-[90] bg-[#1A1A1A] flex flex-col justify-center px-6 md:px-12 transition-all duration-1000 ease-[cubic-bezier(0.87,0,0.13,1)] ${isOpen
             ? 'translate-y-0 opacity-100'
             : '-translate-y-full opacity-50'
-        }`}
+          }`}
       >
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 pt-24">
           {/* Navigation Links */}
@@ -122,11 +117,10 @@ export function Navbar({ settings }: NavbarProps) {
                 key={link.name}
                 href={link.href}
                 onClick={() => handleLinkClick(link.href)}
-                className={`group relative flex items-baseline gap-4 text-5xl md:text-7xl lg:text-8xl font-serif text-[#F5F5F0] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                  isOpen
+                className={`group relative flex items-baseline gap-4 text-5xl md:text-7xl lg:text-8xl font-serif text-[#F5F5F0] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen
                     ? 'translate-y-0 opacity-100'
                     : 'translate-y-20 opacity-0'
-                }`}
+                  }`}
                 style={{ transitionDelay: `${200 + idx * 100}ms` }}
               >
                 <span className="text-xs md:text-sm font-sans text-accent tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute -left-8 md:-left-12 top-1/2 -translate-y-1/2 hidden md:block">
@@ -141,11 +135,10 @@ export function Navbar({ settings }: NavbarProps) {
 
           {/* Secondary Info */}
           <div
-            className={`lg:col-span-4 flex flex-col justify-end text-[#F5F5F0]/60 text-sm font-light space-y-12 transition-all duration-1000 delay-500 ${
-              isOpen
+            className={`lg:col-span-4 flex flex-col justify-end text-[#F5F5F0]/60 text-sm font-light space-y-12 transition-all duration-1000 delay-500 ${isOpen
                 ? 'opacity-100 translate-y-0'
                 : 'opacity-0 translate-y-10'
-            }`}
+              }`}
           >
             <div>
               <span className="block text-xs uppercase tracking-widest text-[#F5F5F0]/40 mb-4 border-b border-[#F5F5F0]/10 pb-2">
@@ -156,6 +149,13 @@ export function Navbar({ settings }: NavbarProps) {
                 className="block text-xl md:text-2xl text-[#F5F5F0] hover:text-accent transition-colors mt-4"
               >
                 {PORTFOLIO_DATA.email}
+              </a>
+
+              <a
+                href={`tel:+23059368556`}
+                className="block text-xl md:text-2xl text-[#F5F5F0] hover:text-accent transition-colors mt-4"
+              >
+                +230 5936 8556
               </a>
             </div>
 
