@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ProfileContent } from "@/components/profile/ProfileContent";
-import { getSiteSettings } from "@/lib/sanity";
+import { getSiteSettings } from "@/lib/tina";
 
 export const metadata: Metadata = {
   title: "Profile | Vishroy Seenarain",

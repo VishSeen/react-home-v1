@@ -2,7 +2,7 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Hero } from '@/components/sections/Hero';
 import { AboutSection } from '@/components/sections/AboutSection';
 import { Footer } from '@/components/layout/Footer';
-import type { SanitySiteSettings } from '@/lib/tina';
+import type { SanitySiteSettings } from '@/lib/tina-helpers';
 
 interface ProfileContentProps {
   settings: SanitySiteSettings;
